@@ -1,7 +1,8 @@
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const randomIndex = Math.floor(Math.random() * choices.length);
-    return choices[randomIndex];
+    const result = choices[randomIndex];
+    return result
 }
 
 function getUserChoice() {
@@ -11,23 +12,50 @@ function getUserChoice() {
     }
     return "Invalid choice";
 }
- const humanScore = 0;
- const computerScore = 0;
+ let humanScore = 0;
+ let computerScore = 0;
 
- function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        console.log("It's a tie");
-    } else if (humanChoice === "rock" && computerChoice === "scissors" ||
-               humanChoice === "scissors" && computerChoice === "paper" ||
-               humanChoice === "paper" && computerChoice === "rock") {
-        console.log("You win!");
-    } else {
-        console.log("You lose!");
+ function playRound(userChoice, computerChoice) {
+    if (userChoice === computerChoice) 
+        return ("It's a tie");
+    if (userChoice === "rock" && computerChoice === "scissors" ||
+               userChoice === "scissors" && computerChoice === "paper" ||
+               userChoice === "paper" && computerChoice === "rock") {
+        return ("You win!");
     }
+    return "You lose!";
   }
-  
-  const humanSelection = gethumanChoice();
+
+  function playGame() {
+    const humanSelection = getUserChoice();
   const computerSelection = getComputerChoice();
   
-  playRound(humanSelection, computerSelection);
-  
+  const result = playRound(humanSelection, computerSelection);
+  if (result === "You win!") {
+    humanScore=humanScore+1
+  }
+else if (result === "You lose!") {
+    computerScore=computerScore+1
+}
+  console.log(result);
+  }
+
+  function playGames(){
+    playGame()
+    playGame()
+    playGame()
+    playGame()
+    playGame()
+    if (humanScore>computerScore){
+    console.log("WINNER WINNER")
+  }
+  else if (humanScore<computerScore){
+    console.log("COMPUTER WINS!!")
+  }
+}
+
+playGames()
+
+
+
+
